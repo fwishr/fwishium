@@ -1,14 +1,22 @@
 # Fwishium
+<img width="1500" height="450" alt="Image" src="https://github.com/user-attachments/assets/171cb60f-7920-476b-be87-8d18a85e5dc6" />
 
-A robust Discord optimization plugin for BetterDiscord — reduce RAM and CPU usage, throttle background activity, and make Discord more responsive.
+### What is Fwishium?
+Fwishium is a lightweight client modification plugin that helps optimize the Discord client. It displays live telemetry for RAM (RSS and heap) and CPU usage, and offers configurable settings to adjust CPU % sensitivity and reporting frequency. Latest patch added a candlestick chart, for monitoring usage use over longer periods.<br>
 
-## Main Features
-- Live RAM & CPU usage indicator (both RSS & Heap)
-- Background throttle mode (reduce updates when Discord is unfocused)
-- Animation throttler (disable/limit animated emojis, GIFs, autoplay)
-- Simple optimization profiles (Lite / Balanced / Max Performance)
-- Custom optimization settings
+## Roadmap
 
+### Alpha
+- [x] ~~Live RAM & CPU usage indicator (RSS & Heap)~~
+- [ ] Background throttle mode (reduce updates when unfocused)
+- [ ] Animation throttler (animated emoji / GIF / autoplay control)
+- [ ] Custom settings & experimental toggles
+
+### Release
+- [ ] Support server
+- [ ] Officially added to [Betterdiscord](https://betterdiscord.app/plugins)
+- [ ] Better compatibility with themes and plugins
+- [ ] Presets: Lite / Balanced / Max Performance
 
 ## Installation
 
