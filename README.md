@@ -1,5 +1,5 @@
 # Fwishium
-<img width="1500" height="450" alt="Image" src="https://github.com/user-attachments/assets/171cb60f-7920-476b-be87-8d18a85e5dc6" />
+<img width="1550" height="500" alt="Image" src="https://github.com/user-attachments/assets/a56141b4-e2c8-4276-a6a8-e819748bf25b" />
 
 ### What is Fwishium?
 Fwishium is a lightweight client modification plugin that helps optimize the Discord client. It displays live telemetry for RAM (RSS and heap) and CPU usage, and offers configurable settings to adjust CPU % sensitivity and reporting frequency. Latest patch added a candlestick chart, for monitoring usage use over longer periods.<br>
