@@ -32,7 +32,7 @@ BetterDiscord
 ## Contributing
 Contributions are welcome. If you'd like to contribute:
 - Open an issue to discuss major changes or report bugs.
-- Send a PR with a clear description of the change and reasoning.
+- Contact me via [Discord](http://discord.com/users/607822260362805259) for any PR's
 - Keep performance changes small and include notes on how they were measured or tested.
 
 ## Links
