@@ -8,7 +8,7 @@ Fwishium is a lightweight client modification plugin that helps optimize the Dis
 
 ### Alpha
 - [x] ~~Live RAM & CPU usage indicator (RSS & Heap)~~
-- [ ] Background throttle mode (reduce updates when unfocused)
+- [X] ~~Background throttle mode (reduce updates when unfocused)~~
 - [ ] Animation throttler (animated emoji / GIF / autoplay control)
 - [ ] Custom settings & experimental toggles
 
