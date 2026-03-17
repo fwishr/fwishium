@@ -2,14 +2,14 @@
 <img width="1550" height="500" alt="Image" src="https://github.com/user-attachments/assets/a56141b4-e2c8-4276-a6a8-e819748bf25b" />
 
 ### What is Fwishium?
-Fwishium is a lightweight client modification plugin that helps optimize the Discord client. It displays live telemetry for RAM (RSS and heap) and CPU usage, and offers configurable settings to adjust CPU % sensitivity and reporting frequency. Latest patch added a candlestick chart, for monitoring usage use over longer periods.<br>
+Fwishium is a lightweight client modification plugin that helps optimize the Discord client. It displays live telemetry for RAM (RSS and heap) and CPU usage with a candlestick chart for monitoring trends over time. When unfocused, it throttles background activity, suppressing non-critical Flux dispatches, pausing CSS animations, and hiding inactive video elements to cut resource usage. It also includes an animation throttler that swaps animated emoji and GIFs for static previews, reducing decode overhead even while focused. All features are independently togglable inside the config.
 
 ## Roadmap
 
 ### Alpha
 - [x] ~~Live RAM & CPU usage indicator (RSS & Heap)~~
 - [X] ~~Background throttle mode (reduce updates when unfocused)~~
-- [ ] Animation throttler (animated emoji / GIF / autoplay control)
+- [X] ~~Animation throttler (animated emoji / GIF / autoplay control)~~
 - [ ] Custom settings & experimental toggles
 
 ### Release
