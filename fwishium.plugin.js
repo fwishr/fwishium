@@ -1,7 +1,7 @@
 /**
  * @name Fwishium
  * @description A robust Discord optimization plugin — reduce RAM and CPU usage, throttle background activity, and make Discord more responsive.
- * @version 0.2.1-Alpha
+ * @version 0.2.2-Alpha
  * @author Fwishr
  * @source https://github.com/fwishr/fwishium
  */
@@ -355,45 +355,113 @@ module.exports = class Fwishium {
   }
 
   getSettingsPanel() {
-    const settings = document.createElement("div");
-    settings.style.cssText = "padding: 10px;";
-    
-    const createToggle = (label, key, value) => {
-      const div = document.createElement("div");
-      div.style.cssText = "margin: 10px 0; display: flex; justify-content: space-between; align-items: center;";
-      div.innerHTML = `<span>${label}</span><input type="checkbox" ${value ? 'checked' : ''}>`;
-      div.querySelector("input").addEventListener("change", (e) => {
-        this.config[key] = e.target.checked;
-        this.saveConfig(this.config);
-      });
-      return div;
-    };
+    const settings = [
+      {
+        type: 'category',
+        id: 'features',
+        name: 'Features',
+        collapsible: true,
+        shown: true,
+        settings: [
+          {
+            type: 'switch',
+            id: 'backgroundThrottle',
+            name: 'Background Throttle',
+            note: 'Suppress Discord when unfocused',
+            value: this.config.backgroundThrottle,
+          },
+          {
+            type: 'switch',
+            id: 'animThrottle',
+            name: 'Animation Throttle',
+            note: 'Replace animated GIFs with static images',
+            value: this.config.animThrottle,
+          },
+        ],
+      },
+      {
+        type: 'category',
+        id: 'display',
+        name: 'Monitor Display',
+        collapsible: true,
+        shown: true,
+        settings: [
+          {
+            type: 'switch',
+            id: 'showCPU',
+            name: 'CPU Usage',
+            note: 'Show real-time CPU percentage',
+            value: this.config.showCPU,
+          },
+          {
+            type: 'switch',
+            id: 'showRSS',
+            name: 'RSS Memory',
+            note: 'Show resident set size',
+            value: this.config.showRSS,
+          },
+          {
+            type: 'switch',
+            id: 'showHeap',
+            name: 'Heap Usage',
+            note: 'Show JavaScript heap allocation',
+            value: this.config.showHeap,
+          },
+        ],
+      },
+      {
+        type: 'category',
+        id: 'tuning',
+        name: 'Performance Tuning',
+        collapsible: true,
+        shown: true,
+        settings: [
+          {
+            type: 'slider',
+            id: 'cpuCap',
+            name: 'CPU Cap',
+            note: 'Set maximum CPU % for scaling (20-100%)',
+            min: 20,
+            max: 100,
+            markers: [20, 40, 60, 80, 100],
+            value: this.config.cpuCap,
+          },
+          {
+            type: 'slider',
+            id: 'candleStickCount',
+            name: 'Chart History',
+            note: 'Number of candlesticks to display',
+            min: 5,
+            max: 30,
+            markers: [5, 10, 15, 20, 25, 30],
+            value: this.config.candleStickCount,
+          },
+          {
+            type: 'slider',
+            id: 'updateInterval',
+            name: 'Update Interval',
+            note: 'Milliseconds between metric updates',
+            min: 500,
+            max: 5000,
+            step: 500,
+            markers: [500, 1000, 2000, 3000, 4000, 5000],
+            value: this.config.updateInterval,
+          },
+        ],
+      },
+    ];
 
-    const createNumber = (label, key, value) => {
-      const div = document.createElement("div");
-      div.style.cssText = "margin: 10px 0; display: flex; justify-content: space-between; align-items: center;";
-      div.innerHTML = `<span>${label}</span><input type="number" style="width: 100px;" value="${value}">`;
-      div.querySelector("input").addEventListener("change", (e) => {
-        this.config[key] = parseInt(e.target.value) || value;
+    return BdApi.UI.buildSettingsPanel({
+      settings,
+      onChange: (category, id, value) => {
+        this.config[id] = value;
+        
+        if (id === 'animThrottle') {
+          value ? this.enableAnimThrottle() : this.disableAnimThrottle();
+        }
+        
         this.saveConfig(this.config);
-      });
-      return div;
-    };
-
-    settings.appendChild(createToggle("Background Throttle", "backgroundThrottle", this.config.backgroundThrottle));
-    settings.appendChild(createToggle("Animation Throttle", "animThrottle", this.config.animThrottle));
-    const animToggle = settings.lastChild.querySelector('input');
-    animToggle.addEventListener('change', () => {
-      if (this.config.animThrottle) this.enableAnimThrottle();
-      else this.disableAnimThrottle();
+      },
     });
-    settings.appendChild(createToggle("Show CPU Monitor", "showCPU", this.config.showCPU));
-    settings.appendChild(createToggle("Show RSS (Memory)", "showRSS", this.config.showRSS));
-    settings.appendChild(createToggle("Show Heap", "showHeap", this.config.showHeap));
-    settings.appendChild(createNumber("CPU Cap (%)", "cpuCap", this.config.cpuCap));
-    settings.appendChild(createNumber("Candlestick Count", "candleStickCount", this.config.candleStickCount));
-    settings.appendChild(createNumber("Update Interval (ms)", "updateInterval", this.config.updateInterval));
-
-    return settings;
   }
 };
